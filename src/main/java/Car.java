@@ -1,4 +1,4 @@
-public class Car {
+public class Car implements Comparable<Car>{
 
     private String model;
     private int power;
@@ -24,6 +24,14 @@ public class Car {
         this.year = carBuilder.year;
     }
 
+    @Override
+    public int compareTo(Car o) {
+        if (!this.model.equals(o.model))
+            return (int)this.model.charAt(0) - (int)o.model.charAt(0);
+        if (this.year != o.year)
+            return this.year - o.year;
+        return this.power - o.power;
+    }
 
     public static class CarBuilder{
 

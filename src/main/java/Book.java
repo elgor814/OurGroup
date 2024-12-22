@@ -1,4 +1,4 @@
-public class Book {
+public class Book implements Comparable<Book>{
 
     private String title;
     private String author;
@@ -24,6 +24,16 @@ public class Book {
         this.pages = bookBuilder.pages;
     }
 
+    @Override
+    public int compareTo(Book o) {
+        if (!this.title.equals(o.title))
+            return (int)this.title.charAt(0) - (int)o.title.charAt(0);
+        if (this.author == null | o.author == null)
+            return (this.author == null ? 0 : 1) - (o.author == null ? 0 : 1);
+        else if (!this.author.equals(o.author))
+            return (int) this.author.charAt(0) - (int)o.author.charAt(0);
+        return this.pages - o.pages;
+    }
 
     public static class BookBuilder{
 
