@@ -36,6 +36,15 @@ public class RootVegetable implements Comparable<RootVegetable>{
         return (this.colour == null ? 0 : 1) - (o.colour == null ? 0 : 1);
     }
 
+    @Override
+    public String toString() {
+        return "\n" + "RootVegetable{" +
+                "type = " + type +
+                ", weight = " + weight +
+                ", colour = " + colour +
+                '}';
+    }
+
     public static class RootVegetableBuilder{
 
         private String type;

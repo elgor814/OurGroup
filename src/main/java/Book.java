@@ -35,6 +35,15 @@ public class Book implements Comparable<Book>{
         return this.pages - o.pages;
     }
 
+    @Override
+    public String toString() {
+        return "\n" + "Book{" +
+                "title = " + title  +
+                ", author = " + author +
+                ", pages = " + pages +
+                '}';
+    }
+
     public static class BookBuilder{
 
         private String title;

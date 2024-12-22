@@ -33,6 +33,15 @@ public class Car implements Comparable<Car>{
         return this.power - o.power;
     }
 
+    @Override
+    public String toString() {
+        return "\n" + "Car{" +
+                "model = " + model +
+                ", power = " + power +
+                ", year = " + year +
+                '}';
+    }
+
     public static class CarBuilder{
 
         private String model;
