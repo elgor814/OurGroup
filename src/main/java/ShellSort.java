@@ -3,7 +3,7 @@ import java.util.*;
 public class ShellSort {
 
     // Метод сортировки с использованием ShellSort для коллекций
-    public static <T> void sort(Collection<T> collection, Comparator<T> comparator) {
+    public static <T> List<T> sort(Collection<T> collection, Comparator<T> comparator) {
         // Преобразуем коллекцию в массив
         T[] array = (T[]) new Object[collection.size()];
         collection.toArray(array);
@@ -23,7 +23,8 @@ public class ShellSort {
         }
 
         // Преобразуем отсортированный массив обратно в коллекцию
-        collection.clear();
-        collection.addAll(Arrays.asList(array));
+        // и вернем отсортированную коллекцию
+        List<T> sortedList = new ArrayList<>(Arrays.asList(array));
+        return sortedList;
     }
 }
