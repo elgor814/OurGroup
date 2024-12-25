@@ -7,8 +7,7 @@ public class MenuContext {
 
         do{
             Menu.showStartMenu();
-            System.out.println("Введите номер действия: ");
-            choice = scanner.nextInt();
+            choice = Menu.getUserChoice(scanner, 1, 6);
 
             switch (choice){
                 case 1:
