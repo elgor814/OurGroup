@@ -17,6 +17,7 @@ public class InputFile extends Validate implements Inputer {
         }
         return strBuild.toString();
     }
+    //запись файла в строку
     private String fStr;
     {
         try {
@@ -25,33 +26,45 @@ public class InputFile extends Validate implements Inputer {
             throw new RuntimeException(e);
         }
     }
-    String[] parts = fStr.split("/n");
+    //создание массива строк
+    String[] arrStr = parseStrToArray(fStr);
 
     @Override
     public int inputDigit() {
-        String str = this.parts[0];
-        if(validNum(str)){
-            System.out.print("Good");
-        }else{
-            System.out.print("Eror");
+        String str = this.arrStr[0];
+        if(!validNum(str)){
+            System.out.println("Eror digital");
         }
         return Integer.parseInt(str);
     }
 
     @Override
     public String inputWord() {
-        String str = this.parts[1];
-        if(validWord(str)){
-            System.out.print("Good");
-        }else{
-            System.out.print("Eror");
+        String str = this.arrStr[1];
+        if(!validWord(str)){
+            System.out.println("Eror word");
         }
         return str;
     }
 
     @Override
     public String inputString() {
-        String str = this.parts[2];
+        String str = this.arrStr[2];
+        return str;
+    }
+
+    //парсинг строки в массив
+    private String[] parseStrToArray(String str){
+        String[] parts = str.split("\r");
+        for (int i = 0; i < parts.length; i++) {
+            parts[i] = delSpcSymb(parts[i]);
+        }
+        return parts;
+    }
+
+    //чистка строки от лишних символов
+    private String delSpcSymb(String str){
+        str = str.startsWith("\n") ? str.substring(1) : str;
         return str;
     }
 }
