@@ -1,7 +1,7 @@
 import java.util.Comparator;
 
-public class CarComparators {
 
+public class CarComparators {
 
     // сортировка по модели
     public static final Comparator<Car> byModel = Comparator.comparing(Car::getModel);
