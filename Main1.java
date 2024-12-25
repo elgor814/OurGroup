@@ -2,7 +2,7 @@ package third_task;
 import java.util.*;
 import java.io.*;
 
-public class Main {
+public class Main1 {
     private static Scanner scanner = new Scanner(System.in);
     private static Car[] cars;
 
