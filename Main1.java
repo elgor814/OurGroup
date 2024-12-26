@@ -27,15 +27,7 @@ public class Main1 {
                     handleManualInput();
                     break;
                 case 2:
-                    String fileName = "src/main/resources/books.txt"; // Имя файла для чтения
-                    List<Book> books = DataReader.readBooksFromFile(fileName);
-
-                    // Вывод загруженных данных
-                    System.out.println("Загруженные книги из файла:");
-                    for (Book book : books) {
-                        System.out.println(book);
-                    }
-                
+                    handleFileInput();
                     break;
                 case 3:
                     handleRandomDataGeneration();
@@ -64,6 +56,17 @@ public class Main1 {
     }
 
     private static void handleFileInput() {
+        String fileName = "src/main/resources/books.txt"; // Имя файла для чтения
+        List<Book> books = DataReader.readBooksFromFile(fileName);
+
+            // Вывод загруженных данных
+            System.out.println("Загруженные книги из файла:");
+            for (Book book : books) {
+                System.out.println(book);
+        }
+        System.out.println();
+    }
+
         System.out.println();
     }
 
