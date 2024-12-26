@@ -75,7 +75,54 @@ public class Main1 {
     }
 
     private static void handleSorting() {
-        System.out.println();
+// Чтение данных из файла
+        List<Book> books = DataReader.readBooksFromFile(fileName);
+
+        // Вывод начальных данных
+        System.out.println("Книги до сортировки:");
+        for (Book book : books) {
+            System.out.println(book);
+        }
+
+        // Выбираем критерий сортировки
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nВыберите критерий сортировки:");
+        System.out.println("1. По количеству страниц");
+        System.out.println("2. По названию книги");
+        System.out.println("3. По автору");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();  // очищаем буфер
+
+        // Создаем объект сортировки Шелла
+        ShellSort<Book> shellSort = new ShellSort<>();
+
+        // Выбираем компаратор в зависимости от выбора пользователя
+        Comparator<Book> comparator = null;
+        switch (choice) {
+            case 1:
+                comparator = Comparator.comparingInt(Book::getPages);
+                break;
+            case 2:
+                comparator = Comparator.comparing(Book::getTitle);
+                break;
+            case 3:
+                comparator = Comparator.comparing(Book::getAuthor);
+                break;
+            default:
+                System.out.println("Неверный выбор, сортировка не выполнена.");
+                return; // Выход, если выбор неверный
+        }
+
+        // Сортируем список книг
+        List<Book> sortedBooks = shellSort.sort(books, comparator);
+
+        // Выводим отсортированные книги
+        System.out.println("\nКниги после сортировки:");
+        for (Book book : sortedBooks) {
+            System.out.println(book);
+        }
+            System.out.println();
     }
 
     public static void handleBinarySearch() {
