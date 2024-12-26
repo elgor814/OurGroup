@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static Car[] cars;
-    private static ArrayList<Car> carList = new ArrayList<>();
+    ArrayList<T> arrayList = new ArrayList<>();
 
     public static void main(String[] args) {
         boolean running = true;
@@ -89,7 +89,8 @@ public class Main {
     }
 
     private static void handleRandomDataGeneration() {
-        System.out.println();
+        Randomaized randomaized = new Randomaized();
+        arrayList = randomaized.getList();
     }
 
     private static void handleSorting() {
