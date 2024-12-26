@@ -1,7 +1,8 @@
-package main.java;
-
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+
 
 public interface ISortStrategy<T> {
-    void sort(Collection<T> collection) ;
+    List<T> sort(Collection<T> collection, Comparator<T> comparator);
 }
