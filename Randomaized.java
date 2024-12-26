@@ -21,9 +21,9 @@ public class Randomaized {
         System.out.println("3 - Овощ");
 
         Scanner scanner = new Scanner(System.in);
-        int choise = scanner.nextInt();
+        int choice = scanner.nextInt();
 
-        if (choise == 1){
+        if (choice == 1){
             ArrayList<Book> arrayList = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 arrayList.add(new Book.BookBuilder(books[rnd.nextInt(0, 4)])
@@ -32,7 +32,7 @@ public class Randomaized {
             }
             return arrayList;
         }
-        else if (choise==2) {
+        else if (choice==2) {
             ArrayList<Car> arrayList = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 arrayList.add(new Car.CarBuilder(cars[rnd.nextInt(0, 4)])
@@ -42,7 +42,7 @@ public class Randomaized {
             }
             return arrayList;
         }
-        else if (choise==3) {
+        else if (choice==3) {
             ArrayList<RootVegetable> arrayList = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 arrayList.add(new RootVegetable.RootVegetableBuilder(vegetables[rnd.nextInt(0, 5)])
