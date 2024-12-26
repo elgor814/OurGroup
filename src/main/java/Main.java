@@ -7,6 +7,9 @@ public class Main {
     private static Car[] cars;
 
     public static void main(String[] args) {
+
+
+
         boolean running = true;
 
         while (running) {
@@ -27,6 +30,15 @@ public class Main {
                     handleManualInput();
                     break;
                 case 2:
+                    // Пример использования: чтение данных из файла
+                    String fileName = "src/main/resources/books.txt"; // Имя файла для чтения
+                    List<Book> books = DataReader.readBooksFromFile(fileName);
+
+                    // Вывод загруженных данных
+                    System.out.println("Загруженные книги из файла:");
+                    for (Book book : books) {
+                        System.out.println(book);
+                    }
                     handleFileInput();
                     break;
                 case 3:
@@ -64,6 +76,25 @@ public class Main {
     }
 
     private static void handleSorting() {
+
+        if (cars == null || cars.length == 0) {
+            System.out.println("Массив пуст. Пожалуйста, сначала заполните данные.");
+            return;
+        }
+
+        ISortStrategy<Car> shellSort = new ShellSort<>();
+        Comparator<Car> comparator = Comparator.comparing(Car::getModel)
+                .thenComparing(Car::getYear)
+                .thenComparing(Car::getPower);
+
+        shellSort.sort(Arrays.asList(cars), comparator);
+
+        System.out.println("Данные успешно отсортированы:");
+        for (Car car : cars) {
+            System.out.println(car);
+        }
+
+
         System.out.println();
     }
 
