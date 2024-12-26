@@ -1,20 +1,28 @@
 package third_task;
 
+import java.util.List;
+
 public class BinarySearch {
-    public static <T extends Comparable<T>> int binarySearch(T[] array, T key) {
+    public static <T extends Comparable<T>> int binarySearch(List<T> list, T key) {
         int low = 0;
-        int high = array.length - 1;
+        int high = list.size() - 1;
 
         while (low <= high) {
             int mid = low + (high - low) / 2;
-            int comparison = array[mid].compareTo(key);
-            if (comparison == 0) return mid;
-            if (comparison < 0) {
+            T midValue = list.get(mid);
+
+            int cmp = midValue.compareTo(key);
+            if (cmp < 0) {
                 low = mid + 1;
-            } else {
+            } else if (cmp > 0) {
                 high = mid - 1;
+            } else {
+                return mid; // Найдено
             }
         }
-        return -1;
+
+        return -1; // Не найдено
     }
 }
+
+

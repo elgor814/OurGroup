@@ -5,6 +5,7 @@ import java.io.*;
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static Car[] cars;
+    private static ArrayList<Car> carList = new ArrayList<>();
 
     public static void main(String[] args) {
         boolean running = true;
@@ -36,7 +37,7 @@ public class Main {
                     handleSorting();
                     break;
                 case 5:
-                    handleBinarySearch();
+                    handleBinarySearch(carList);
                     break;
                 case 6:
                     handleDataSaving();
@@ -52,7 +53,36 @@ public class Main {
     }
 
     private static void handleManualInput() {
-        System.out.println("Ввод данных вручную...");
+        System.out.println("Введите количество автомобилей для добавления:");
+        int count = scanner.nextInt();
+        scanner.nextLine();
+
+        for (int i = 0; i < count; i++) {
+            System.out.println("Введите данные для автомобиля №" + (i + 1) + ":");
+
+            System.out.print("Мощность: ");
+            int power = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Модель: ");
+            String model = scanner.nextLine();
+
+            System.out.print("Год производства: ");
+            int year = scanner.nextInt();
+            scanner.nextLine();
+
+            Car car = new Car.Builder()
+                    .setPower(power)
+                    .setModel(model)
+                    .setYear(year)
+                    .build();
+
+            carList.add(car);
+
+            System.out.println("Автомобиль добавлен: " + car);
+        }
+
+        System.out.println("Все данные успешно добавлены!");
     }
 
     private static void handleFileInput() {
@@ -67,9 +97,9 @@ public class Main {
         System.out.println();
     }
 
-    public static void handleBinarySearch() {
-        if (cars == null || cars.length == 0) {
-            System.out.println("Массив пуст. Пожалуйста, сначала заполните данные.");
+    public static void handleBinarySearch(ArrayList<Car> carList) {
+        if (carList == null || carList.isEmpty()) {
+            System.out.println("Список пуст. Пожалуйста, сначала заполните данные.");
             return;
         }
 
@@ -79,14 +109,17 @@ public class Main {
 
         Car keyCar = new Car.Builder().setPower(power).build();
 
-        int index = BinarySearch.binarySearch(cars, keyCar);
+        Collections.sort(carList);
+
+        int index = BinarySearch.binarySearch(carList, keyCar);
 
         if (index != -1) {
-            System.out.println("Найден автомобиль: " + cars[index]);
+            System.out.println("Найден автомобиль: " + carList.get(index));
         } else {
             System.out.println("Автомобиль с указанной мощностью не найден.");
         }
     }
+
 
     private static void handleDataSaving() {
         System.out.println();
